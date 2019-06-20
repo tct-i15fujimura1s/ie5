@@ -30,11 +30,66 @@ DVDで採用されている。
 種々のメディアで扱うために、種々のフォーマットが規定されている。
 
 ### MPEG2のプロファイルとレベル
-| | | SP<br>シンプル | MP<br>メイン | SNP<br>SNRスケーラブル<br>画質階層化 | SSP<br>空間スケーラブル<br>階層的符号化 | HP<br>ハイ | 4:2:2P |
-| HL<br>1920×1080×30<br>1920×1152×25 | | MP@HL | | | HP@HL | |
-| H 1440<br>1440×1080×30<br>1440×1152×25 | | MP@H 1440 | | SSP@H 1440 | HP@H 1440 | |
-| ML<br>720×480×30<br>720×576×25 | SP@ML | MP@ML | SNP@ML | | HP@ML | 4:2:2P@ML |
-| LL<br>952×288×30 | | MP@LL | SNP@LL | | | |
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-baqh" colspan="2" rowspan="2"></th>
+    <th class="tg-baqh" colspan="6">プロファイル</th>
+  </tr>
+  <tr>
+    <td class="tg-baqh">SP<br>シンプル<br>I.Pのみ</td>
+    <td class="tg-baqh">MP<br>メイン</td>
+    <td class="tg-baqh">SNP<br>SNRスケーラブル<br>画質階層化</td>
+    <td class="tg-baqh">SSP<br>空間スケーラブル<br>階層的符号化</td>
+    <td class="tg-baqh">HP<br>ハイ</td>
+    <td class="tg-baqh">4:2:2P<br>4:2:2</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">HL<br>1920×1080×30<br>1920×1152×25<br></td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">MP@HL</td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">HP@HL</td>
+    <td class="tg-baqh"></td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">H 1440<br>1440×1080×30<br>1440×1152×25<br></td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">MP@H 1440</td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">SSP@H 1440</td>
+    <td class="tg-baqh">HP@H 1440</td>
+    <td class="tg-baqh"></td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">ML<br>720×480×30<br>720×576×25</td>
+    <td class="tg-baqh">SP@ML</td>
+    <td class="tg-baqh">MP@ML</td>
+    <td class="tg-baqh">SNP@ML</td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">HP@ML</td>
+    <td class="tg-baqh">4:2:2P@ML</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">LL<br>952×288×30</td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh">MP@LL</td>
+    <td class="tg-baqh">SNP@LL</td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh"></td>
+    <td class="tg-baqh"></td>
+  </tr>
+</table>
 
 ## MPEG4
 想定：伝送速度 ≦64Kbps
