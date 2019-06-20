@@ -3,7 +3,7 @@
   border-bottom: solid 1px #333;
   color: transparent;
 }
-.fill:hover {
+*:hover > .fill {
   color: inherit;
 }
 </style>
