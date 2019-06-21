@@ -133,10 +133,10 @@ c. 0x3:0x1234
 
 <style>
 em {
-  visibility: hidden;
+  opacity: 0;
 }
 em:hover {
-  visibility: visible;
+  opacity: 1;
 }
 .flex {
   display: flex;
