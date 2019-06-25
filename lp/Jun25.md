@@ -33,14 +33,17 @@ S() {
 * 例: `E → E + T`
 下向きの構文解析法は左再帰性のある文法に適用できない
 * 対策: 文法を修正する
-  `A → Aα|β` ⇒ <code>A → β{α}</code>
+  * `A → Aα|β` ⇒ <code>A → β{α}</code>
 
-<code><pre>
+
+<pre>
 〈S〉 → <u>if</u> 〈P〉 <u>then</u> 〈S〉
 〈S〉 → <u>if</u> 〈P〉 <u>then</u> 〈S〉 <u>else</u> 〈S〉
-</pre></code>
-↓
-<code><pre>
+</pre>
+<div>↓</div>
+<pre>
 〈S〉 → <u>if</u> 〈P〉 <u>then</u> 〈S〉<strong>〈S’〉</strong>
 〈S’〉 → <u>else</u> 〈S〉 |　ε
-</pre></code>
+</pre>
+
+<style>u { text-decoration: underline }</style>
