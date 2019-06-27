@@ -106,7 +106,7 @@ int input(Stack *s, FILE *fp) {
         node.data.num = -num;
       } else {
         node.type = BIN;
-        node.data.op = c;
+        node.data.op = '-';
       }
       break;
     default:
