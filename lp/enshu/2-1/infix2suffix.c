@@ -34,7 +34,7 @@ NODE *_num();
 void print_suffix(NODE *tree);
 
 int token;
-FILE *rfp;
+FILE *rfp, *wfp;
 
 int main(int argc, char **argv) {
   if(3 > argc) {
@@ -53,13 +53,13 @@ int main(int argc, char **argv) {
   NODE *n = _term();
   
   // 出力
-  FILE *wfp = fopen(argv[2], "w");
+  wfp = fopen(argv[2], "w");
   if(NULL == wfp) {
     perror("fopen");
     exit(1);
   }
-  print_suffix(wfp, n);
-  printf("\n");
+  print_suffix(n);
+  fprintf(wfp, "\n");
   
   return 0;
 }
@@ -140,16 +140,16 @@ void print_suffix(NODE *node) {
     case MUL: op = "*"; goto bin;
     case DIV: op = "/"; goto bin;
     case NUM: goto num;
-    default: printf("(error)"); return;
+    default: fprintf(wfp, "?"); return;
   }
 num:
-  printf("%d", node->param.num);
+  fprintf(wfp, "%d", node->param.num);
   goto fin;
 bin:
   print_suffix((NODE *) node->param.bin.left);
-  printf(" ");
+  fprintf(wfp, " ");
   print_suffix((NODE *) node->param.bin.right);
-  printf(" %s", op);
+  fprintf(wfp, " %s", op);
   goto fin;
 fin:
   free(node);
