@@ -42,3 +42,31 @@
 6. Das Fahrrad steht vor <span class="fill">dem</span> Haus.
   自転車は家 (das Haus) の前においてある。（直訳：立っている）
 
+### Übung D
+1. ans → an das
+2. Schüle: F3 -> zur
+3. ins Theater gehen
+4. Am (= An dem) Montag
+5. Heute essen wir im Restaurant 場所→3格
+6. Beim Essen 慣用句
+
+### Übung E
+1. Sie wartet <span class="fill">auf ihren Mann.</span>
+  彼女は<span class="fill">彼女の夫を</span>待つ。
+2. Ich danke dir herzlich <span class="fill">für deinen Brief.</span>
+  私は<span class="fill">君からの手紙に</span>心から感謝しています。
+3. Wir sind <span class="fill">mit dem Essen zufrieden.</span>
+  私たちは<span class="fill">その食事に満足しています</span>。
+4. Er denkt immer <span class="fill">an Seine Freundin.</span>
+  彼は<span class="fill">彼女のことを</span>いつも思っている。
+5. Meine Tante ist <span class="fill">stolz auf dem Töchter.</span>
+  私のおばは<span class="fill">娘たちを誇りに思っている</span>。
+6. Ein Tourist fragt mich <span class="fill">nach dem Weg.</span>
+  観光客は私に<span class="fill">道を</span>尋ねた。
+
+a. mit dem Essen zufrieden.
+b. an seine Freundin.
+c. nach dem Weg.
+d. für deinen Brief.
+e. auf ihnen Mann.
+f. stolz auf ihre Töchter.
