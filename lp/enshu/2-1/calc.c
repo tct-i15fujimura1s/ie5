@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+/*
+input -> {word}
+word -> num | op
+*/
+
 #ifdef DEBUG
 #define debug(...) fprintf(stderr, __VA_ARGS__)
 #else
@@ -75,6 +80,12 @@ int main(int argc, char **argv) {
   return 0;
 }
 
+int readnum(FILE *fp) {
+  int c, num = 0;
+  while(0 <= (c = fgetc(fp)) && isdigit(c)) num = num * 10 + (c - '0');
+  return num;
+}
+
 int input(Stack *s, FILE *fp) {
   int c;
   while(' ' == (c = fgetc(fp)));
@@ -82,18 +93,27 @@ int input(Stack *s, FILE *fp) {
   
   NODE node;
   switch(c) {
-    case '+': case '-': case '*': case '/':
+    case '+': case '*': case '/':
       node.type = BIN;
       node.data.op = c;
+      break;
+    case '-':
+      c = fgetc(fp);
+      if(isdigit(c)) {
+        node.type = NUM;
+        int num = c - '0';
+        num = num * 10 + readnum(fp);
+        node.data.num = -num;
+      } else {
+        node.type = BIN;
+        node.data.op = c;
+      }
       break;
     default:
       if(!isdigit(c)) return FALSE;
       node.type = NUM;
       int num = c - '0';
-      while(isdigit(c = fgetc(fp))) {
-        num = (num * 10) + (c - '0');
-        debug("num = num * 10 + %d\n", c - '0');
-      }
+      num = num * 10 + readnum(fp);
       node.data.num = num;
   }
   push(s, node);
