@@ -113,7 +113,7 @@ int input(Stack *s, FILE *fp) {
       break;
     default:
       ungetc(c, fp);
-      num = getnum(fp);
+      num = readnum(fp);
       if(num < 0) return FALSE;
       node.data.num = num;
   }
