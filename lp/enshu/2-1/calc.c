@@ -63,13 +63,11 @@ int main(int argc, char **argv) {
     
     int ofs = 0;
 
-    for(;;) {
+    while(ofs < len) {
       // 入力
-      if(ofs < len) {
-        int r = input(stack, buf + ofs);
-        if(0 > r) break;
-        ofs += r;
-      }
+      int r = input(stack, buf + ofs);
+      if(0 > r) break;
+      ofs += r;
       // 計算
       if(peek(stack, 1)->type == BIN && peek(stack, 2)->type == NUM && peek(stack, 3)->type == NUM) {
         // ポップ
