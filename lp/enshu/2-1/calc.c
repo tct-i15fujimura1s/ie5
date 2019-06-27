@@ -111,7 +111,7 @@ int input(Stack *s, FILE *fp) {
       }
       break;
     default:
-      ungetc(fp, c);
+      ungetc(c, fp);
       int num = getnum(fp);
       if(num < 0) return FALSE;
       node.data.num = num;
