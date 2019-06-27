@@ -48,6 +48,7 @@ NODE *_natural();
 void print_suffix(NODE *tree);
 
 int token;
+int len;
 int offset;
 FILE *rfp, *wfp;
 char buf[BUFSIZE+1];
@@ -74,7 +75,8 @@ int main(int argc, char **argv) {
   // 入力
   while(!feof(rfp)) {
     if(!fgets(buf, sizeof(buf), rfp)) break;
-    if(strlen(buf) == BUFSIZE && buf[BUFSIZE-1] != '\n') {
+    len = strlen(buf);
+    if(len == BUFSIZE && buf[BUFSIZE-1] != '\n') {
       fprintf(stderr, "1行の文字数が多すぎます\n");
       continue;
     }
@@ -198,5 +200,5 @@ fin:
 }
 
 void lookahead() {
-  while(' '==(token = offset < BUFSIZE ? buf[offset++] : -1));
+  while(' '==(token = offset < len ? buf[offset++] : -1));
 }
