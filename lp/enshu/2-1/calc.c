@@ -80,8 +80,11 @@ int main(int argc, char **argv) {
   return 0;
 }
 
+// < 0 -> error
 int readnum(FILE *fp) {
-  int c, num = 0;
+  int c = fgetc(fp);
+  if(0 > c || !isdigit(c)) return -1;
+  int num = c - '0';
   while(0 <= (c = fgetc(fp)) && isdigit(c)) num = num * 10 + (c - '0');
   return num;
 }
@@ -98,11 +101,9 @@ int input(Stack *s, FILE *fp) {
       node.data.op = c;
       break;
     case '-':
-      c = fgetc(fp);
-      if(isdigit(c)) {
+      int num = readnum(fp);
+      if(num >= 0) {
         node.type = NUM;
-        int num = c - '0';
-        num = num * 10 + readnum(fp);
         node.data.num = -num;
       } else {
         node.type = BIN;
@@ -110,10 +111,9 @@ int input(Stack *s, FILE *fp) {
       }
       break;
     default:
-      if(!isdigit(c)) return FALSE;
-      node.type = NUM;
-      int num = c - '0';
-      num = num * 10 + readnum(fp);
+      ungetc(fp, c);
+      int num = getnum(fp);
+      if(num < 0) return FALSE;
       node.data.num = num;
   }
   push(s, node);
