@@ -3,6 +3,9 @@
 term -> factor {("+" | "-") factor}
 factor -> primary {("*" | "-") primary}
 primary -> num | "(" term ")"
+num -> natural | negative
+natural -> digit {digit}
+negative -> "-" natural
 */
 
 #include <stdio.h>
@@ -30,6 +33,8 @@ NODE *_term();
 NODE *_factor();
 NODE *_primary();
 NODE *_num();
+NODE *_negative();
+NODE *_natural();
 
 void print_suffix(NODE *tree);
 
@@ -118,8 +123,22 @@ NODE *_primary() {
 }
 
 NODE *_num() {
+  NODE *n = _negative();
+  if(n) return n;
+  return _natural();
+}
+
+NODE *_negative() {
+  if('-' != token) return NULL;
+  lookahead();
+  NODE *n = _natural();
+  n->param.num *= -1;
+  return n;
+}
+
+NODE *_natural() {
   int num = 0;
-  if(!isdigit(token)) return NULL;
+  if(!isdigit(token) && '-' != token) return NULL;
   for(;;) {
     num = (num * 10) + (token - '0');
     lookahead();
