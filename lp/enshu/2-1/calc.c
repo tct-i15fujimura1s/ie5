@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
       
       NODE n;
       n.type = NUM;
-      n.num = num;
+      n.data.num = num;
       push(stack, n);
     }
   }
