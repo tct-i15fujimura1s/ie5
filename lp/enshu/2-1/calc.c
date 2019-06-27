@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#define TRUE 1
+#define FALSE 0
+
+typedef struct {
+  enum {BIN, NUM} type;
+  union {
+    char op;
+    int num;
+  } data;
+} NODE;
+
 typedef struct {
   NODE *data;
   size_t capacity;
@@ -13,14 +24,6 @@ void stack_free(Stack *);
 void push(Stack *s, NODE n);
 NODE pop(Stack *s);
 NODE *peek(Stack *s, int offset);
-
-typedef struct {
-  enum {BIN, NUM} type;
-  union {
-    char op;
-    int num;
-  } data;
-} NODE;
 
 int input(Stack *s, FILE *fp);
 
