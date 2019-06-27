@@ -10,6 +10,7 @@ negative -> "-" natural
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 
 #define BUFSIZE 1023
@@ -68,7 +69,7 @@ int main(int argc, char **argv) {
   // 入力
   while(!feof(rfp)) {
     if(!fgets(buf, sizeof(buf), rfp)) break;
-    if(buf[sizeof(buf) - 2] != '\n') {
+    if(strlen(buf) == BUFSIZE && buf[BUFSIZE-1] != '\n') {
       fprintf(stderr, "1行の文字数が多すぎます\n");
       continue;
     }
