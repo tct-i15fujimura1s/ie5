@@ -42,12 +42,23 @@ NODE *peek(Stack *s, int offset);
 int input(Stack *s, char *buf);
 
 int main(int argc, char **argv) {
-  if(2 > argc) {
-    printf("Usage: %s SUFILE\n", argv[0]);
-    return 1;
+  FILE *fp;
+  
+  if(2 >= argc && strcmp("-h", argv[1]) == 0) {
+    fprintf(stderr, "Usage: %s [SUFILE]\n", argv[0]);
+    return 0;
   }
   
-  FILE *fp = fopen(argv[1], "r");
+  if(2 > argc) {
+    fp = stdout;
+  } else {
+    fp = fopen(argv[1], "r");
+    if(!fp) {
+      perror("fopen");
+      exit(1);
+    }
+  }
+  
   Stack *stack = stack_new();
   char buf[BUFSIZE+1];
   
