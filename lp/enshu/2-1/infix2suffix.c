@@ -29,6 +29,7 @@ void lookahead();
 NODE *_term();
 NODE *_factor();
 NODE *_primary();
+NODE *_num();
 
 void print_suffix(NODE *tree);
 
