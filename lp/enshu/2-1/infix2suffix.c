@@ -107,6 +107,7 @@ NODE *_primary() {
   lookahead();
   n = _term();
   if(!n || ')' != token) return NULL;
+  lookahead();
   return n;
 }
 
