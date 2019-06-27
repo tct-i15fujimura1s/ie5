@@ -95,13 +95,14 @@ int input(Stack *s, FILE *fp) {
   if(c < 0) return FALSE;
   
   NODE node;
+  int num;
   switch(c) {
     case '+': case '*': case '/':
       node.type = BIN;
       node.data.op = c;
       break;
     case '-':
-      int num = readnum(fp);
+      num = readnum(fp);
       if(num >= 0) {
         node.type = NUM;
         node.data.num = -num;
@@ -112,7 +113,7 @@ int input(Stack *s, FILE *fp) {
       break;
     default:
       ungetc(c, fp);
-      int num = getnum(fp);
+      num = getnum(fp);
       if(num < 0) return FALSE;
       node.data.num = num;
   }
