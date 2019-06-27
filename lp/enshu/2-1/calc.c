@@ -35,7 +35,7 @@ int input(Stack *s, FILE *fp);
 
 int main(int argc, char **argv) {
   if(2 > argc) {
-    printf("Usage: %s SUFFIX_FILE\n", argv[0]);
+    printf("Usage: %s SUFILE\n", argv[0]);
     return 1;
   }
   
