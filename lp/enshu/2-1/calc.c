@@ -91,7 +91,7 @@ int input(Stack *s, FILE *fp) {
     default:
       if(!isdigit(c)) return FALSE;
       node.type = NUM;
-      int num = 0;
+      int num = c - '0';
       while(isdigit(c = fgetc(fp))) {
         num = (num * 10) + (c - '0');
         debug("num = num * 10 + %d\n", c - '0');
