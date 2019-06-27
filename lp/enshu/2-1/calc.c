@@ -89,12 +89,16 @@ int main(int argc, char **argv) {
         push(stack, n);
       }
     }
-
-    if(peek(stack, 1)->type == NUM) {
+    
+    if(stack->length != 1) {
+      fprintf(stderr, "error: (stack.length = %d) != 1\n", stack->length);
+    } else if(peek(stack, 1)->type != NUM) {
+      fprintf(stderr, "error: stack.top isn't a number\n");
+    } else {
       printf("= %d\n", pop(stack).data.num);
     }
     
-    if(stack->length) {
+#ifdef DEBUG
       printf("stack: ");
       while(stack->length) {
         NODE n = pop(stack);
@@ -103,7 +107,8 @@ int main(int argc, char **argv) {
         else printf("(?) ");
       }
       printf("\n");
-    }
+#endif
+    
   }
   
   stack_free(stack);
