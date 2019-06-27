@@ -146,3 +146,7 @@ bin:
 fin:
   free(node);
 }
+
+void lookahead() {
+  token = fgetc(fp);
+}
