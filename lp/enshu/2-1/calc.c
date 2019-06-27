@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 
 /*
@@ -15,6 +16,8 @@ word -> num | op
 
 #define TRUE 1
 #define FALSE 0
+
+#define BUFSIZE 1023
 
 typedef struct {
   enum {BIN, NUM} type;
@@ -36,7 +39,7 @@ void push(Stack *s, NODE n);
 NODE pop(Stack *s);
 NODE *peek(Stack *s, int offset);
 
-int input(Stack *s, FILE *fp);
+int input(Stack *s, char *buf);
 
 int main(int argc, char **argv) {
   if(2 > argc) {
@@ -45,34 +48,64 @@ int main(int argc, char **argv) {
   }
   
   FILE *fp = fopen(argv[1], "r");
-  
   Stack *stack = stack_new();
+  char buf[BUFSIZE+1];
   
-  for(;;) {
-    if(!input(stack, fp)) break;
+  while(!feof(fp)) {
     
-    if(peek(stack, 1)->type == BIN && peek(stack, 2)->type == NUM && peek(stack, 3)->type == NUM) {
-      char op = pop(stack).data.op;
-      int right = pop(stack).data.num;
-      int left = pop(stack).data.num;
-      int num;
-      switch(op) {
-        case '+': num = left + right; break;
-        case '-': num = left - right; break;
-        case '*': num = left * right; break;
-        case '/': num = left / right; break;
-        default: fprintf(stderr, "error: unknown operator: %c\n", op); exit(-1);
-      }
-      
-      NODE n;
-      n.type = NUM;
-      n.data.num = num;
-      push(stack, n);
+    if(!fgets(buf, sizeof(buf), fp)) break;
+    
+    int len = strlen(buf);
+    if(BUFSIZE == len && buf[BUFSIZE-1] != '\n') {
+      fprintf(stderr, "１行が長すぎます\n");
+      continue;
     }
-  }
-  
-  if(peek(stack, 1)->type == NUM) {
-    printf("= %d\n", pop(stack).data.num);
+    
+    int ofs = 0;
+
+    for(;;) {
+      // 入力
+      if(ofs < len) {
+        int r = input(stack, buf + ofs);
+        if(0 > r) break;
+        ofs += r;
+      }
+      // 計算
+      if(peek(stack, 1)->type == BIN && peek(stack, 2)->type == NUM && peek(stack, 3)->type == NUM) {
+        // ポップ
+        char op = pop(stack).data.op;
+        int right = pop(stack).data.num;
+        int left = pop(stack).data.num;
+        int num;
+        switch(op) {
+          case '+': num = left + right; break;
+          case '-': num = left - right; break;
+          case '*': num = left * right; break;
+          case '/': num = left / right; break;
+          default: fprintf(stderr, "error: unknown operator: %c\n", op); exit(-1);
+        }
+        // プッシュ
+        NODE n;
+        n.type = NUM;
+        n.data.num = num;
+        push(stack, n);
+      }
+    }
+
+    if(peek(stack, 1)->type == NUM) {
+      printf("= %d\n", pop(stack).data.num);
+    }
+    
+    if(stack->length) {
+      printf("stack: ");
+      while(stack->length) {
+        NODE n = pop(stack);
+        if(n.type == NUM) printf("%d ", n.data.num);
+        else if(n.type == BIN) printf("%c ", n.data.op);
+        else printf("(?) ");
+      }
+      printf("\n");
+    }
   }
   
   stack_free(stack);
@@ -89,10 +122,12 @@ int readnum(FILE *fp) {
   return num;
 }
 
-int input(Stack *s, FILE *fp) {
+// < 0 -> error
+int input(Stack *s, char *buf) {
+  int offset = 0;
   int c;
-  while(' ' == (c = fgetc(fp)));
-  if(c < 0) return FALSE;
+  while(' ' == (c = buf[offset++]));
+  if(c < 0) return -1;
   
   NODE node;
   switch(c) {
@@ -101,10 +136,10 @@ int input(Stack *s, FILE *fp) {
       node.data.op = c;
       break;
     case '-':
-      c = fgetc(fp);
+      c = buf[offset++];
       if(isdigit(c)) {
         int num = c - '0';
-        while(0 <= (c = fgetc(fp)) && isdigit(c)) num = num * 10 + (c - '0');
+        while(0 <= (c = buf[offset++]) && isdigit(c)) num = num * 10 + (c - '0');
         node.type = NUM;
         node.data.num = -num;
       } else {
@@ -115,13 +150,14 @@ int input(Stack *s, FILE *fp) {
     default:
       if(isdigit(c)) {
         int num = c - '0';
+        while(0 <= (c = buf[offset++]) && isdigit(c)) num = num * 10 + (c - '0');
         node.type = NUM;
         node.data.num = num;
-      } else return FALSE;
+      } else return -1;
   }
   push(s, node);
   
-  return TRUE;
+  return offset;
 }
 
 Stack *stack_new() {
