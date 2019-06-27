@@ -198,5 +198,5 @@ fin:
 }
 
 void lookahead() {
-  token = offset < BUFSIZE ? buf[offset++] : -1;
+  while(' '==(token = offset < BUFSIZE ? buf[offset++] : -1));
 }
