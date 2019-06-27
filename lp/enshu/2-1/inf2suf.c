@@ -15,6 +15,12 @@ negative -> "-" natural
 
 #define BUFSIZE 1023
 
+#ifdef DEBUG
+#  define debug(...) fprintf(stderr, __VA_ARGS__)
+#else
+#  define debug(...) /* debug(__VA_ARGS__) */
+#endif
+
 typedef enum {
   NIL, ADD, SUB, MUL, DIV, NUM
 } NODE_TYPE;
