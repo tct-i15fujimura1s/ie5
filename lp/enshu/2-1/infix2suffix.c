@@ -55,6 +55,7 @@ int main(int argc, char **argv) {
   
   // 出力
   print_suffix(n);
+  printf("\n");
 }
 
 NODE *_term() {
