@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#define DEBUG
+
+#ifdef DEBUG
+#define debug(...) fprintf(stderr, __VA_ARGS__)
+#else
+#define debug(...) /* debug(__VA_ARGS__) */
+#endif
+
 #define TRUE 1
 #define FALSE 0
 
@@ -110,9 +118,13 @@ void push(Stack *s, NODE n) {
   }
   s->data[s->length] = n;
   s->length += 1;
+  
+  debug(n.type == NUM ? "push num %d\n" : "push op %c\n", n.type == NUM ? n.data.num : n.data.op);
 }
 NODE pop(Stack *s) {
-  return s->data[s->length -= 1];
+  NODE n = s->data[s->length -= 1];
+  debug(n.type == NUM ? "pop num %d\n" : "pop op %c\n", n.type == NUM ? n.data.num : n.data.op);
+  return n;
 }
 NODE *peek(Stack *s, int offset) {
   return &(s->data[s->length - offset]);
