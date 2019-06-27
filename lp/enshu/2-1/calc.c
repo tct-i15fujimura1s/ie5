@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define DEBUG
-
 #ifdef DEBUG
 #define debug(...) fprintf(stderr, __VA_ARGS__)
 #else
