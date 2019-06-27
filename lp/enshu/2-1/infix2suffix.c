@@ -22,7 +22,7 @@ typedef struct {
     } bin;
     int num;
   } param;
-} Node;
+} NODE;
 
 void lookahead();
 
