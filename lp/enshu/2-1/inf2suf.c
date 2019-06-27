@@ -47,20 +47,19 @@ FILE *rfp, *wfp;
 char buf[BUFSIZE+1];
 
 int main(int argc, char **argv) {
-  if(3 > argc) {
-    printf("Usage: %s INFILE SUFILE\n", argv[0]);
-    exit(1);
+  if(2 <= argc && 0 == strcmp("-h", argv[1])) {
+    printf("Usage: %s [INFILE [SUFILE]]\n", argv[0]);
+    return 0;
   }
   
   // ファイルオープン
-  
-  rfp = fopen(argv[1], "r");
+  rfp = argc > 1 ? fopen(argv[1], "r") : stdin;
   if(NULL == rfp) {
     perror("fopen");
     exit(1);
   }
   
-  wfp = fopen(argv[2], "w");
+  wfp = argc > 2 ? fopen(argv[2], "w") : stdout;
   if(NULL == wfp) {
     perror("fopen");
     exit(1);
