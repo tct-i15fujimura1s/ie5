@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
   }
   
   if(2 > argc) {
-    fp = stdout;
+    fp = stdin;
   } else {
     fp = fopen(argv[1], "r");
     if(!fp) {
