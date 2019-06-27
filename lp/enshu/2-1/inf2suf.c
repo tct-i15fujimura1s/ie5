@@ -12,6 +12,8 @@ negative -> "-" natural
 #include <stdlib.h>
 #include <ctype.h>
 
+#define BUFSIZE 1023
+
 typedef enum {
   NIL, ADD, SUB, MUL, DIV, NUM
 } NODE_TYPE;
@@ -39,7 +41,9 @@ NODE *_natural();
 void print_suffix(NODE *tree);
 
 int token;
+int offset;
 FILE *rfp, *wfp;
+char buf[BUFSIZE+1];
 
 int main(int argc, char **argv) {
   if(3 > argc) {
@@ -47,24 +51,37 @@ int main(int argc, char **argv) {
     exit(1);
   }
   
+  // ファイルオープン
+  
   rfp = fopen(argv[1], "r");
   if(NULL == rfp) {
     perror("fopen");
     exit(1);
   }
   
-  // 文法解析
-  lookahead();
-  NODE *n = _term();
-  
-  // 出力
   wfp = fopen(argv[2], "w");
   if(NULL == wfp) {
     perror("fopen");
     exit(1);
   }
-  print_suffix(n);
-  fprintf(wfp, "\n");
+  
+  // 入力
+  while(!feof(fp)) {
+    if(!fgets(buf, sizeof(buf), rfp)) break;
+    if(buf[sizeof(buf) - 2] != '\n') {
+      fprintf(stderr, "1行の文字数が多すぎます\n");
+      continue;
+    }
+    offset = 0;
+
+    // 文法解析
+    lookahead();
+    NODE *n = _term();
+
+    // 出力
+    print_suffix(n);
+    fprintf(wfp, "\n");
+  }
   
   return 0;
 }
@@ -175,5 +192,5 @@ fin:
 }
 
 void lookahead() {
-  token = fgetc(rfp);
+  token = offset < BUFSIZE ? buf[offset++] : -1;
 }
