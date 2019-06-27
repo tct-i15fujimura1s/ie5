@@ -132,7 +132,7 @@ NODE *_negative() {
   if('-' != token) return NULL;
   lookahead();
   NODE *n = _natural();
-  n->param.num *= -1;
+  if(n) n->param.num *= -1;
   return n;
 }
 
