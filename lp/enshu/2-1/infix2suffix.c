@@ -17,8 +17,8 @@ typedef struct {
   NODE_TYPE type;
   union {
     struct {
-      NODE *left;
-      NODE *right;
+      void *left;
+      void *right;
     } bin;
     int num;
   } param;
@@ -137,9 +137,9 @@ num:
   printf("%d", node->param.num);
   goto fin;
 bin:
-  print_suffix(node->param.bin.left);
+  print_suffix((NODE *) node->param.bin.left);
   printf(" ");
-  print_suffix(node->param.bin.right);
+  print_suffix((NODE *) node->param.bin.right);
   printf(" %s", op);
   goto fin;
 fin:
