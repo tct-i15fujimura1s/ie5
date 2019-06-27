@@ -34,17 +34,16 @@ NODE *_num();
 void print_suffix(NODE *tree);
 
 int token;
-
-FILE *fp;
+FILE *rfp;
 
 int main(int argc, char **argv) {
-  if(2 > argc) {
-    printf("Usage: %s INFIX_FILE\n", argv[0]);
+  if(3 > argc) {
+    printf("Usage: %s INFILE SUFILE\n", argv[0]);
     exit(1);
   }
   
-  fp = fopen(argv[1], "r");
-  if(NULL == fp) {
+  rfp = fopen(argv[1], "r");
+  if(NULL == rfp) {
     perror("fopen");
     exit(1);
   }
@@ -54,8 +53,15 @@ int main(int argc, char **argv) {
   NODE *n = _term();
   
   // 出力
-  print_suffix(n);
+  FILE *wfp = fopen(argv[2], "w");
+  if(NULL == wfp) {
+    perror("fopen");
+    exit(1);
+  }
+  print_suffix(wfp, n);
   printf("\n");
+  
+  return 0;
 }
 
 NODE *_term() {
@@ -150,5 +156,5 @@ fin:
 }
 
 void lookahead() {
-  token = fgetc(fp);
+  token = fgetc(rfp);
 }
