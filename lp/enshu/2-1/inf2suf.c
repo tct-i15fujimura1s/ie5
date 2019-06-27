@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
   }
   
   // 入力
-  while(!feof(fp)) {
+  while(!feof(rfp)) {
     if(!fgets(buf, sizeof(buf), rfp)) break;
     if(buf[sizeof(buf) - 2] != '\n') {
       fprintf(stderr, "1行の文字数が多すぎます\n");
