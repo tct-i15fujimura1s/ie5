@@ -118,6 +118,8 @@ int main(int argc, char **argv) {
         else printf("(?) ");
       }
       printf("\n");
+#else
+      stack->length = 0;
 #endif
     
   }
