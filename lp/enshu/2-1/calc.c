@@ -102,7 +102,7 @@ int main(int argc, char **argv) {
     }
     
     if(stack->length != 1) {
-      fprintf(stderr, "error: (stack.length = %d) != 1\n", stack->length);
+      fprintf(stderr, "error: (stack.length = %d) != 1\n", (int) stack->length);
     } else if(peek(stack, 1)->type != NUM) {
       fprintf(stderr, "error: stack.top isn't a number\n");
     } else {
