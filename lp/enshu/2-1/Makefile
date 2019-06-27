@@ -1,6 +1,8 @@
-.PHONY: all
-all: calc infix2suffix
+.PHONY: all clean
+all: calc inf2suf
 calc: calc.c
-	gcc -o calc calc.c
-infix2suffix: infix2suffix.c
-	gcc -o infix2suffix infix2suffix.c
+	gcc -o $@ $<
+inf2suf: inf2suf.c
+	gcc -o $@ $<
+clean:
+	rm -f calc inf2suf
