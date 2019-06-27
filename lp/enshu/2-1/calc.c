@@ -95,15 +95,16 @@ int input(Stack *s, FILE *fp) {
   if(c < 0) return FALSE;
   
   NODE node;
-  int num;
   switch(c) {
     case '+': case '*': case '/':
       node.type = BIN;
       node.data.op = c;
       break;
     case '-':
-      num = readnum(fp);
-      if(num >= 0) {
+      c = fgetc(fp);
+      if(isdigit(c)) {
+        int num = c - '0';
+        while(0 <= (c = fgetc(fp)) && isdigit(c)) num = num * 10 + (c - '0');
         node.type = NUM;
         node.data.num = -num;
       } else {
@@ -112,10 +113,11 @@ int input(Stack *s, FILE *fp) {
       }
       break;
     default:
-      ungetc(c, fp);
-      num = readnum(fp);
-      if(num < 0) return FALSE;
-      node.data.num = num;
+      if(isdigit(c)) {
+        int num = c - '0';
+        node.type = NUM;
+        node.data.num = num;
+      } else return FALSE;
   }
   push(s, node);
   
