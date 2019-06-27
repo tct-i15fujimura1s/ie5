@@ -138,7 +138,7 @@ NODE *_negative() {
 
 NODE *_natural() {
   int num = 0;
-  if(!isdigit(token) && '-' != token) return NULL;
+  if(!isdigit(token)) return NULL;
   for(;;) {
     num = (num * 10) + (token - '0');
     lookahead();
