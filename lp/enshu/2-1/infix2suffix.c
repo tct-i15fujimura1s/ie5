@@ -13,7 +13,7 @@ typedef enum {
   NIL, ADD, SUB, MUL, DIV, NUM
 } NODE_TYPE;
 
-typdef struct {
+typedef struct {
   NODE_TYPE type;
   union {
     struct {
