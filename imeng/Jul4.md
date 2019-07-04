@@ -1,7 +1,8 @@
 ---
-layout: post
 mathjax: true
 ---
+
+{% include mathjax.html %}
 
 ## 符号化方式の分類
 * 可逆符号化
