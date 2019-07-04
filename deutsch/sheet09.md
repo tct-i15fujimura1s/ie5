@@ -78,7 +78,9 @@ ref:before {content: "*"}
 ### Übung E: 時刻
 1. 6.05 (24時間制): _sechs Uhr fünf_
 2. 14.10 (24時間制): _vierzehn Uhr zehn_
-3. 18.40 (24時間制): _achtzehn Uhr vierzig_
+3. 18.40 (24時間制): _achtzehn[*](#ref-achtzehn) Uhr vierzig_
 4. 8.50 (12時間制): _zehn vor neun_
 5. 10.15 (12時間制): _viertel nach zehn_
 6. 4.30 (12時間制): _halb fünf_
+
+<ref id="ref-achtzehn">発音はアハツェーン</ref>
