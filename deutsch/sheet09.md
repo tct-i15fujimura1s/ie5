@@ -1,6 +1,6 @@
 <style>
 em {color: transparent; border-bottom: solid 1px #333}
-em:hover {color:inherit}
+em:hover, *:focus em {color:inherit}
 ref {font-size:smaller}
 ref:before {content: "*"}
 </style>
