@@ -76,7 +76,7 @@ ref:before {content: "*"}
   * _Ich weiß nicht, ob Alex Auto fahren kann._
 
 ### Übung E: 時刻
-1. 6.05 (24時間制): _sechzehn Uhr fünf_
+1. 6.05 (24時間制): _sechs Uhr fünf_
 2. 14.10 (24時間制): _vierzehn Uhr zehn_
 3. 18.40 (24時間制): _achtzehn Uhr vierzig_
 4. 8.50 (12時間制): _zehn vor neun_
