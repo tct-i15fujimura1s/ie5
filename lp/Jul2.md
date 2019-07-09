@@ -1,3 +1,7 @@
+---
+mathjax: true
+---
+
 {% include mathjax.html %}
 * 文と文形式
 * 構造図式
