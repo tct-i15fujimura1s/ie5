@@ -45,5 +45,5 @@ B() =
 ## 関数
 * $First(\alpha) = \{a \in V_T | \alpha \overset*\Rightarrow \beta; \beta = abc\ldots\}$
 * $Follow(\alpha) = \{z \in V_T | S \overset*\Rightarrow xy \alpha zw\ldots\}$
-* $Director(A, \alpha) = V_T \cap (First(\alpha) \cup (\{a | a \overset*\Rightarrow \varepsilon\} \cap Follow(A)))
+* $Director(A, \alpha) = V_T \cap (First(\alpha) \cup (\{a | a \overset*\Rightarrow \varepsilon\} \cap Follow(A)))$
 
