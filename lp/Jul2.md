@@ -10,7 +10,7 @@ mathjax: true
 # 文と形式
 * 文形式: S（開始記号）から生成される記号列、非終端記号を含むかも $x\text{が文} \equiv x\in(V_N \cup V_T)^* \wedge S \overset*\Rightarrow x$
 * 文: 終端記号のみの文形式 $x\text{が文形式} \equiv x\in V_T^* \wedge S \overset*\Rightarrow x$
-* 言語 (文の集合) $L(G) = \{x | x \in V_T^* \wedge S \overset*\Rightarrow x\}$
+* 言語 (文の集合) <pre>$L(G) = \{x | x \in V_T^* \wedge S \overset*\Rightarrow x\}$</pre>
 
 # 構造図式
 ![構造図式の例](files/Jul2/structure-diagram.svg)
@@ -47,7 +47,7 @@ B() =
 * 入力の先読みによって、バックトラックを排除
 
 ## 関数
-* $First(\alpha) = \{a \in V_T | \alpha \overset*\Rightarrow \beta; \beta = abc\ldots\}$
-* $Follow(\alpha) = \{z \in V_T | S \overset*\Rightarrow xy \alpha zw\ldots\}$
-* $Director(A, \alpha) = V_T \cap (First(\alpha) \cup (\{a | a \overset*\Rightarrow \varepsilon\} \cap Follow(A)))$
+* <pre>$First(\alpha) = \{a \in V_T | \alpha \overset*\Rightarrow \beta; \beta = abc\ldots\}$</pre>
+* <pre>$Follow(\alpha) = \{z \in V_T | S \overset*\Rightarrow xy \alpha zw\ldots\}$</pre>
+* <pre>$Director(A, \alpha) = V_T \cap (First(\alpha) \cup (\{a | a \overset*\Rightarrow \varepsilon\} \cap Follow(A)))$</pre>
 
