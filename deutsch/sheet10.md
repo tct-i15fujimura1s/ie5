@@ -1,11 +1,10 @@
 <style>
-u { color: transparent; border-bottom: solid 1px }
+u { color: transparent; border-bottom: solid 1px #000 }
 u[placeholder]:before {
   content: attr(placeholder);
-  color: inherit;
+  color: initial;
 }
 u:hover { color: inherit; border: none }
-u:hover:before { display: none }
 .conversation { white-space: pre-wrap }
 </style>
 
@@ -29,4 +28,19 @@ Gast: Gut, den nehme ich.
 </div>
 
 1. 〜はどこにありますか。
- * Wo gibt es hier <u placeholder="(4格)"></u>?
+  * Wo gibt es hier (4格)?
+2. 今日、あなたは何がしたいですか。
+  * Was möchten Sie heute machen?
+3. 私は〜したいです。
+  * Ich möchte …
+4. 今日の天気は〜です。
+  * Heute ist es …
+
+| schwül | | sonnig | |
+| heiß | | heiter | |
+| warm | | wolkig | |
+| kühl | | windig | |
+| kalt | |
+
+※ Lehrbuch, S. 49
+
