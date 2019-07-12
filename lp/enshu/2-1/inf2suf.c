@@ -58,20 +58,20 @@ int main(int argc, char **argv) {
     printf("Usage: %s [INFILE [SUFILE]]\n", argv[0]);
     return 0;
   }
-  
+
   // ファイルオープン
   rfp = argc > 1 ? fopen(argv[1], "r") : stdin;
   if(NULL == rfp) {
     perror("fopen");
     exit(1);
   }
-  
+
   wfp = argc > 2 ? fopen(argv[2], "w") : stdout;
   if(NULL == wfp) {
     perror("fopen");
     exit(1);
   }
-  
+
   // 入力
   while(!feof(rfp)) {
     if(!fgets(buf, sizeof(buf), rfp)) break;
@@ -89,8 +89,9 @@ int main(int argc, char **argv) {
     // 出力
     print_suffix(n);
     fprintf(wfp, "\n");
+    fflush(stdout);
   }
-  
+
   return 0;
 }
 
@@ -177,6 +178,10 @@ NODE *_natural() {
 }
 
 void print_suffix(NODE *node) {
+  if(!node) {
+    fprintf(wfp, "?");
+    return;
+  }
   char *op;
   switch(node->type) {
     case ADD: op = "+"; goto bin;

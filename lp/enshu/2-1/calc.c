@@ -43,12 +43,12 @@ int input(Stack *s, char *buf);
 
 int main(int argc, char **argv) {
   FILE *fp;
-  
-  if(2 >= argc && strcmp("-h", argv[1]) == 0) {
+
+  if(2 == argc && strcmp("-h", argv[1]) == 0) {
     fprintf(stderr, "Usage: %s [SUFILE]\n", argv[0]);
     return 0;
   }
-  
+
   if(2 > argc) {
     fp = stdin;
   } else {
@@ -58,20 +58,20 @@ int main(int argc, char **argv) {
       exit(1);
     }
   }
-  
+
   Stack *stack = stack_new();
   char buf[BUFSIZE+1];
-  
+
   while(!feof(fp)) {
-    
+
     if(!fgets(buf, sizeof(buf), fp)) break;
-    
+
     int len = strlen(buf);
     if(BUFSIZE == len && buf[BUFSIZE-1] != '\n') {
       fprintf(stderr, "１行が長すぎます\n");
       continue;
     }
-    
+
     int ofs = 0;
 
     while(ofs < len) {
@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
         push(stack, n);
       }
     }
-    
+
     if(stack->length != 1) {
       fprintf(stderr, "error: (stack.length = %d) != 1\n", (int) stack->length);
     } else if(peek(stack, 1)->type != NUM) {
@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
     } else {
       printf("= %d\n", pop(stack).data.num);
     }
-    
+
 #ifdef DEBUG
       printf("stack: ");
       while(stack->length) {
@@ -121,11 +121,11 @@ int main(int argc, char **argv) {
 #else
       stack->length = 0;
 #endif
-    
+
   }
-  
+
   stack_free(stack);
-  
+
   return 0;
 }
 
@@ -144,7 +144,7 @@ int input(Stack *s, char *buf) {
   int c;
   while(' ' == (c = buf[offset++]));
   if(c < 0) return -1;
-  
+
   NODE node;
   switch(c) {
     case '+': case '*': case '/':
@@ -172,12 +172,16 @@ int input(Stack *s, char *buf) {
       } else return -1;
   }
   push(s, node);
-  
+
   return offset;
 }
 
 Stack *stack_new() {
   Stack *s = (Stack *) malloc(sizeof(Stack));
+  if(!s) {
+    perror("malloc");
+    return NULL;
+  }
   s->capacity = 16;
   s->length = 0;
   s->data = (NODE *) malloc(sizeof(NODE) * s->capacity);
@@ -194,7 +198,7 @@ void push(Stack *s, NODE n) {
   }
   s->data[s->length] = n;
   s->length += 1;
-  
+
   debug(n.type == NUM ? "push num %d\n" : "push op %c\n", n.type == NUM ? n.data.num : n.data.op);
 }
 NODE pop(Stack *s) {
