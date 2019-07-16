@@ -1,6 +1,8 @@
 <style>
 q {color:transparent; border-bottom: solid 1px #333}
 q:hover {color:inherit}
+q:before {content: ""}
+q:after {content: ""}
 </style>
 # p. 31 Unit 5 (1)
 ## Review of the Previous Lesson
@@ -63,14 +65,12 @@ q:hover {color:inherit}
 2. What does Larry give to the Easter Island Head?
   - He gives him a big wad of <u>bubble gum</u>.
 3. How does Larry stop the Mayans from shooting him with their spears and darts?
-  - He <q>stopped</q> their spears and darts <q>with</q> a <q></q> goalie blocker.
+  - He <q>stopped</q> their spears and darts <q>with</q> a <q>hockey</q> goalie blocker.
 4. Why does Jedediah want to blow a hole in the mountain?
-  - Because they are <q></q> to <q></q> a r<q></q>.
+  - Because they are <q>trying</q> to <q>build</q> a r<q>ailroad</q>.
 5. Why doesn't Larry want to be called Gigantor?
-  - Because it makes him <q></q> like a <q></q>.
+  - Because it makes him <q>feel</q> like a <q>freak</q>.
 6. What do you think will happen to the Neanderthal men now that they have gotten the lighter from Larry?
   - They might get <q>burnt</q> or worse, they might set a <q>fire</q> at the museum.
 7. Do you think Larry was being mean to Dexter the monkey? Why? Why not?
-  - No. He teased Dexter, but Dexter also <q>teased</q> Larry, so it is e<q>   </q>.
-
-
+  - No. He teased Dexter, but Dexter also <q>teased</q> Larry, so it is e<q>ven</q>.
