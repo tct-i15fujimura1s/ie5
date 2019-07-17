@@ -82,7 +82,7 @@ $$X(z) = \sum_{n=0}^\infty u(n) z^{-n} \\ = 1 + z^{-1} + z^{-2} + \cdots = \frac
 
 等比級数の公式より、 $\left|z^{-1}\right| < 1$ で収束 (収束領域は単位円の外側)
 
-## 
+##
 
 ## z変換の性質
 1. 線型性
@@ -107,10 +107,12 @@ $X(z)$ から $x(n)$ を求める。
 
 $X(z) = \frac{z}{3z^2 - 4z + 1}$ の逆z変換
 
-<div>$$\begin{eqnarray*}
+<div>
+$$\begin{eqnarray*}
 X(z) &=& \frac{z}{(z-1)(3z-1)} \\
 X(z) z^{n-1} &=& \frac{z^n}{(z-1)(3z-1)} = \frac{z^n}{3(z-1)(z-\frac13)} \\
 Res\left[X(z)z^{n-1}, z=\frac13\right] = \left~ \frac{z^n}{3(z-1)}\right|_{z=1} = \frac12 \\
 Res\left[X(z)z^{n-1}, z=\frac13\right] = \left~ \frac{z^n}{3(z-1)}\right|_{z=\frac13} = - \frac12 3^{-n} \\
 x(n) &=& \frac12 (1 - 3^{-n})
-\end{eqnarray*}$$</div>
+\end{eqnarray*}$$
+</div>
