@@ -1,0 +1,45 @@
+1-1
+あ リクエスト・レスポンス
+い クライアント・サーバ
+う TCP/IP
+1-2
+え クライアント
+お サーバ
+か リクエスト
+き レスポンス
+く コネクションを管理するため
+1-3
+け URL
+こ スキーム
+さ 80
+し sin_port
+す プレゼンテーション
+せ 32bit
+そ IPアドレス
+た sin_addr
+1-4
+ち リクエスト・ライン
+つ method
+て オブジェクトの情報だけを要求
+と 空行
+な プロセス２が頑張った?
+1-5
+に socket
+ぬ connect
+ね write
+の read
+は close
+1-6
+ひ socket
+ふ bind
+へ listen
+ほ accept
+ま read
+み write
+む close
+1-7
+め connect()　より前
+も リクエスト -> リクエストを処理 -> レスポンス
+や accept(), socket()
+ゆ accept()
+よ malloc
