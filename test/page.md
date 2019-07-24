@@ -1,3 +1,3 @@
 # Test Page
 
-Page paths: {{ site.pages.map(&:path) }}
+Page paths: {{ site.pages[0] }}
