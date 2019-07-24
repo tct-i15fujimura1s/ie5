@@ -1,3 +1,4 @@
 # Test Page
 
-{{ site.pages }}
+Pages: {{ site.pages.size }}
+Static Files: {{ site.static_files }}
