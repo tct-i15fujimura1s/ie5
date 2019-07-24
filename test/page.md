@@ -1,3 +1,9 @@
 # Test Page
 
-Page paths: {{ site.pages[0] }}
+## Pages
+<dl>
+{% for page in site.pages %}
+  <dt>{{ page.date }}</dt>
+  <dd><a href="{{ page.url }}">{{ page.title }}</dd>
+{% endfor %}
+</dl>
