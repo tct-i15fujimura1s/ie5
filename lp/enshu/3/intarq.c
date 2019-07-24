@@ -93,3 +93,13 @@ S(expr) BEGIN
   }
   return r;
 END;
+
+S(term) BEGIN
+  GET(r, factor);
+  for(;;) {
+    if('*' != CUR && '/' != CUR) break;
+    char *name = ('*' == CUR) ? "*" : "/";
+    LA;
+    G
+  }
+END;
