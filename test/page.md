@@ -1,4 +1,3 @@
 # Test Page
 
-Pages: {{ site.pages.size }}
-Static Files: {{ site.static_files }}
+Page paths: {{ site.pages.map(&:path) }}
