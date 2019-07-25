@@ -12,11 +12,19 @@ def main
 
   pgm = PGM.parse(content)
 
+  values = Array.new(pgm.max + 1, 0)
 
+  pgm.each do |value|
+    values[value] += 1
+  end
+
+  
 end
 
 class PGM
   include Enumerable
+
+  attr_reader :width, :height, :max
 
   def self.parse(src)
     src = src.gsub(/^#.+\n/, '')
@@ -50,7 +58,7 @@ class PGM
   def each
     (1 ... @width).each do |x|
       (1 ... @height).each do |y|
-        yield [self[x, y], x, y]
+        yield self[x, y], x, y
       end
     end
   end
