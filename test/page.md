@@ -1,6 +1,6 @@
-----
+---
 theme: jekyll-theme-modernist
-----
+---
 
 # Test Page
 
