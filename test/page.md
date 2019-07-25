@@ -1,3 +1,7 @@
+----
+layout: modernist
+----
+
 # Test Page
 
 ## Directories
