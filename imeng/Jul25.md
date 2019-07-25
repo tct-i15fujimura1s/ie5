@@ -4,8 +4,8 @@
 * 縦軸：個数
 * 横軸：画素値
 
-[http://sigemura3.tu.tokuyama.ac.jp/pub/image/source.pgm]
-[http://sigemura3.tu.tokuyama.ac.jp/pub/image/cup.pgm]
+[ftp://sugimura3.tu.tokuyama.ac.jp/pub/image/source.pgm]
+[ftp://sugimura3.tu.tokuyama.ac.jp/pub/image/cup.pgm]
 
 1. 表紙
 2. 課題内容 (どういうものを、どのように、どうした)
