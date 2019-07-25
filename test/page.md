@@ -7,7 +7,7 @@ theme: jekyll-theme-modernist
 ## Directories
 <ul>
 {% for page in site.pages %}
-{%   if page.url.last == "/" %}
+{%   if page.url =~ %r!^/\w*/! %}
   <li><a href="{{ page.url }}">{{ page.title }}</a></li>
 {%   endif %}
 {% endfor %}
