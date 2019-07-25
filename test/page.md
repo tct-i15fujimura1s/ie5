@@ -6,9 +6,7 @@ theme: jekyll-theme-modernist
 
 ## Directories
 <ul>
-{% for page in site.pages %}
-{%   if page.url =~ %r!^/\w*/! %}
+{% for page in site.pages %}{% if page.url =~ %r!^/\w*/! %}
   <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-{%   endif %}
-{% endfor %}
+{% endif %}{% endfor %}
 </ul>
