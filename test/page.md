@@ -4,7 +4,7 @@ theme: jekyll-theme-modernist
 
 # Test Page
 
-## Index of /
+## Index
 <ul id="dirs">
 </ul>
 
@@ -16,17 +16,9 @@ theme: jekyll-theme-modernist
     const li = document.createElement("li");
     {
       const a = document.createElement("a");
-      a.textContent = entry.name;
-      a.href = entry.html_url;
+      a.textContent = a.href = entry.name;
       li.appendChild(a);
     }
     dirs.appendChild(li);
   }));
 </script>
-
-$.create("li", [
-  
-]);
-
-li
-  
