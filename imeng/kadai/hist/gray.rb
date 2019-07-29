@@ -18,7 +18,14 @@ def main
     values[value] += 1
   end
 
-  
+  rows = values.max + 1
+  cols = pgm.max * 2 + 1
+
+  plot = PGM.new(cols, rows, 1)
+
+  rows.times { |y|
+    plot[0][y] = 1
+  }
 end
 
 class PGM
@@ -37,6 +44,21 @@ class PGM
 
     src.chars.each_slice(bytes) do |slice|
       slice.chars.inject(0) { |n, c| n << 8 | c.ord }
+    end
+  end
+
+  def to_s
+    dst = "P5 #{width} #{height} #{max}"
+    if max < 256
+      each do |value, (x, y)|
+        dst << "\n" if x.zero?
+        dst << value.chr
+      end
+    else
+      each do |value, (x, y)|
+        dst << "\n" if x.zero?
+        dst << (value >> 8).chr << (value & 0xff).chr
+      end
     end
   end
 
