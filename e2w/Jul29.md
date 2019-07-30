@@ -21,3 +21,6 @@ a -> b -> d -> h -> e -> g -> f -> c -> i -> j
 2. A, Joking
 3. A, Metaphor
 4. C, Euphemism
+
+Fool me once, shame on you.
+(Twice, shame on me.)

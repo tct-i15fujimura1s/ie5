@@ -26,6 +26,16 @@ def main
   rows.times { |y|
     plot[0][y] = 1
   }
+
+  values.each_with_index { |val, n|
+    x = i * 2 + 2
+    n.times do |i|
+      y = i + 1
+      plot[x, y] = 1
+    end
+  }
+
+  print plot.to_s
 end
 
 class PGM
@@ -81,6 +91,14 @@ class PGM
     (1 ... @width).each do |x|
       (1 ... @height).each do |y|
         yield self[x, y], x, y
+      end
+    end
+  end
+
+  def fill_rect(x, y, w, h, value)
+    w.times do |_x|
+      h.times do |_y|
+        self[x + _x, y + _y] = value
       end
     end
   end
