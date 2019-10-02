@@ -74,6 +74,7 @@ public class Ex1 {
 		panel.add(btnTapMe);
 		
 		textArea = new JTextArea();
+		textArea.setLineWrap(true);
 		frame.getContentPane().add(textArea, BorderLayout.CENTER);
 	}
 
