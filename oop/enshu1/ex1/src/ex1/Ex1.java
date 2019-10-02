@@ -52,7 +52,7 @@ public class Ex1 {
 		JButton btnClickMe = new JButton("Click Me");
 		btnClickMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textArea.append("Click!");
+				textArea.setText("Click!");
 			}
 		});
 		panel.add(btnClickMe);
@@ -68,7 +68,7 @@ public class Ex1 {
 		JButton btnTapMe = new JButton("Tap Me");
 		btnTapMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textArea.append("Tap!");
+				textArea.setText("Tap!");
 			}
 		});
 		panel.add(btnTapMe);
