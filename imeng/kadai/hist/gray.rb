@@ -18,24 +18,7 @@ def main
     values[value] += 1
   end
 
-  rows = values.max + 1
-  cols = pgm.max * 2 + 1
-
-  plot = PGM.new(cols, rows, 1)
-
-  rows.times { |y|
-    plot[0][y] = 1
-  }
-
-  values.each_with_index { |val, n|
-    x = i * 2 + 2
-    n.times do |i|
-      y = i + 1
-      plot[x, y] = 1
-    end
-  }
-
-  print plot.to_s
+  puts values.join ?\n
 end
 
 class PGM
@@ -50,11 +33,17 @@ class PGM
     src = src[$&.length .. -1]
     pgm = PGM.new(width, height, max)
 
-    bytes = (Math.log2(max + 1) / 8).ceil
-
-    src.chars.each_slice(bytes) do |slice|
-      slice.chars.inject(0) { |n, c| n << 8 | c.ord }
+    if max < 256
+      src.chars.each_with_index do |c, i|
+        x = i % width
+        y = i / width
+        pgm[x, y] = c.ord
+      end
+    else
+      puts "max < 256 please"
     end
+
+    pgm
   end
 
   def to_s
@@ -74,7 +63,7 @@ class PGM
 
   def initialize(width, height, max)
     @width, @height, @max = width, height, max
-    @data = Array.new(width * height)
+    @data = Array.new(width * height, 0)
   end
 
   def [](x, y)
@@ -88,8 +77,8 @@ class PGM
   end
 
   def each
-    (1 ... @width).each do |x|
-      (1 ... @height).each do |y|
+    (0 ... @width).each do |x|
+      (0 ... @height).each do |y|
         yield self[x, y], x, y
       end
     end
