@@ -10,6 +10,7 @@ https://tct-i15fujimura1s.github.io/ie5/
   fetch("https://api.github.com/repos/tct-i15fujimura1s/ie5/contents/", {mode: "cors"})
   .then(res => res.json())
   .then(entries => entries.forEach(entry => {
+    if(~"_.".indexOf(entry.name[0])) return;
     const li = document.createElement("li");
     {
       const a = document.createElement("a");
