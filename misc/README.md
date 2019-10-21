@@ -1,0 +1,3 @@
+# いろいろ
+
+{% include index.html %}
