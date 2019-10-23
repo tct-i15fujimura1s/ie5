@@ -1,0 +1,27 @@
+SPK     EQU     01H
+; PWM でノコギリ波を出力するテスト
+        ORG     70H
+        LD      G0, INIT
+;   duty 比を計算する
+;   合計: 1周期 (14*G1+38) サイクル
+;   29 サイクル (+ 6 サイクル)
+L1      LD      G1, #0          ; 5
+L2      SUB     G0, #1          ; 5
+        JNZ     L3              ; 5
+        LD      G0, INIT        ; (7)
+L3      ST      G0, VALUE       ; 7
+        ADD     G1, VALUE       ; 7
+
+;   PWM で出力する
+;   13 サイクル
+        LD      G0, #1          ; 5
+        OUT     G0, SPK         ; 8
+;   (14*G1-4) サイクル
+L4      SUB     G1, #1          ; 5
+        JZ      L5              ; 4
+        JMP     L4              ; 5
+
+;   0 <= G1 <= 6
+
+VALUE   DS      1
+INIT    DC

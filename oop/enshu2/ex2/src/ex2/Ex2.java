@@ -14,6 +14,7 @@ public class Ex2 {
 
 	private JFrame frame;
 	private JPanel panel_1;
+  private Random rand = new Random();
 
 	/**
 	 * Launch the application.
@@ -45,10 +46,10 @@ public class Ex2 {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		
+
 		JButton btnRed = new JButton("Red");
 		btnRed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -57,7 +58,7 @@ public class Ex2 {
 		});
 		btnRed.setForeground(Color.RED);
 		panel.add(btnRed);
-		
+
 		JButton btnBlue = new JButton("Blue");
 		btnBlue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -66,7 +67,7 @@ public class Ex2 {
 		});
 		btnBlue.setForeground(Color.BLUE);
 		panel.add(btnBlue);
-		
+
 		JButton btnGreen = new JButton("Green");
 		btnGreen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,7 +76,7 @@ public class Ex2 {
 		});
 		btnGreen.setForeground(Color.GREEN);
 		panel.add(btnGreen);
-		
+
 		JButton btnTurquoise = new JButton("Turquoise");
 		btnTurquoise.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +85,23 @@ public class Ex2 {
 		});
 		btnTurquoise.setForeground(new Color(0, 157, 191));
 		panel.add(btnTurquoise);
-		
+
+    JButton btnRandom = new JButton("Random");
+    btnRandom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+        int r, g, b;
+        int x = rand.nextInt(255), y = rand.nextInt(255);
+        switch(rand.nextInt(3)) {
+          case 0: r = 255; g = x; b = y; break;
+          case 1: r = x; g = 255; b = y; break;
+          default: r = x; g = y; b = 255;
+        }
+				panel_1.setBackground(new Color(r, g, b));
+			}
+		});
+    panel.add(btnRandom);
+
+
 		panel_1 = new JPanel();
 		panel_1.setBackground(Color.ORANGE);
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
