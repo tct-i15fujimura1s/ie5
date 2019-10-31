@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>MBox</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+<div id="player">
+  <button id="player-button-play" type="button" class="btn-primary">再生</button>
+</div>
+<script type="module" src="vm-player.js"></script>
+<style>
+  #score-editor .table {
+    font-family: monospace;
+  }
+  
+  #score-editor td, #score-editor th {
+    padding: 2px;
+    border: solid 1px rgba(0, 0, 0, 0.125);
+    text-align: center;
+  }
+  
+  #score-editor .key-white {
+    background-color: #ffe;
+    width: auto;
+    height: auto;
+  }
+  
+  #score-editor .key-black {
+    background-color: #888;
+    width: auto;
+    height: auto;
+  }
+  
+  .key-off {
+    color: transparent
+  }
+  
+  .key-candidate {
+    color: rgba(0, 0, 0, 0.25)
+  }
+  
+  .key-on {
+    color: #333
+  }
+  
+  .key-on:hover, .key-off:hover {
+    cursor: pointer
+  }
+  
+</style>
+<div id="score">
+  <div id="score-control">
+    <button id="score-button-edit" type="button" class="btn-primary">編集</button>
+  </div>
+  <div id="score-editor">
+    <table id="score-table" class="table">
+      <tfoot>
+        <tr>
+          <td id="score-row-addRow">
+            <div id="score-button-addRow" class="btn-secondary text-center">+</div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+<script type="module" src="vm-score.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

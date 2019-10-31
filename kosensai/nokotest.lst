@@ -1,0 +1,31 @@
+ADR  CODE          Label   Instruction             Comment              Page(1)
+
+01                 SPK     EQU     01H            
+00                 ; PWM でノコギリ波を出力するテスト
+00                         ORG     00H            
+00  10 1F                  LD      G0,INIT        
+02  14 00                  LD      G1,0           
+04                 ;   DUTY 比を計算する
+04                 ;   合計: 1周期 (14*G1+42) サイクル
+04                 ;   15 サイクル (+ 14 サイクル)
+04  17 00          L1      LD      G1,#0          ; 5
+06  43 01          L2      SUB     G0,#1          ; 5
+08  B4 0E                  JNZ     L3             ; 5
+0A  10 1F                  LD      G0,INIT        ; (7)
+0C  37 01                  ADD     G1,#1          ; (7)
+0E                 ;   PWM で出力する
+0E                 ;   13 サイクル
+0E  13 01          L3      LD      G0,#1          ; 5
+10  C3 01                  OUT     G0,SPK         ; 8
+12                 ;   (14*G1+14) サイクル
+12  47 01          L4      SUB     G1,#1          ; 5
+14  A4 18                  JZ      L5             ; 4
+16  A0 12                  JMP     L4             ; 5
+18  13 00          L5      LD      G0,#0          ; 5
+1A  C3 01                  OUT     G0,SPK         ; 8
+1C  A0 04                  JMP     L1             ; 5
+1E                 
+1E                 ;   0 <= G1 <= 6
+1E                 
+1E  01             VALUE   DC      1              
+1F  27             INIT    DC      39             

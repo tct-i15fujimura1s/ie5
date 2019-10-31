@@ -1,0 +1,53 @@
+//output:score.html
+
+style.
+  #score-editor .table {
+    font-family: monospace;
+  }
+  
+  #score-editor td, #score-editor th {
+    padding: 2px;
+    border: solid 1px rgba(0, 0, 0, 0.125);
+    text-align: center;
+  }
+
+  #score-editor .key-white {
+    background-color: #ffe;
+    width: auto;
+    height: auto;
+  }
+  
+  #score-editor .key-black {
+    background-color: #888;
+    width: auto;
+    height: auto;
+  }
+  
+  .key-off {
+    color: transparent
+  }
+  
+  .key-candidate {
+    color: rgba(0, 0, 0, 0.25)
+  }
+  
+  .key-on {
+    color: #333
+  }
+  
+  .key-on:hover, .key-off:hover {
+    cursor: pointer
+  }
+  
+#score
+  #score-control
+    button.btn-primary#score-button-edit(type="button") 編集
+  
+  #score-editor
+    table.table#score-table
+      tfoot
+        tr
+          td#score-row-addRow
+            .btn-secondary.text-center#score-button-addRow +
+
+script(type="module" src="vm-score.js")
