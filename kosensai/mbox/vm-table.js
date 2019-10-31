@@ -24,7 +24,7 @@ export default class {
   }
 
   get(index) {
-    return Array.from(this._tbody.children).map(this.rowMap);
+    return this.rowMap(this._tbody[0].children[index]);
   }
 
   addRow() {
