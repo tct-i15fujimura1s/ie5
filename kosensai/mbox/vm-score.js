@@ -1,57 +1,56 @@
-import Table from "./vm-table.js";
+import {Sheet} from "./sheet.js";
+import {SheetViewer} from "./sheet-viewer.js";
+import {MBoxPlayer} from "./mbox-player.js";
 
-const table = new Table("#score-table");
-const keys = "A, ,B,C, ,D, ,E,F, ,G, ,A, ,B,C".split(",");
-table.header = keys.map(key => $(`<th class="key-${key==" " ? "black" : "white"}">${key}</th>`)[0]);
-table.row = keys.map(key => $(`<td class="key-${key==" " ? "black" : "white"} key-off">●</td>`)[0]);
-table.rowMap = row => {
-  let freq = 220;
-  const list = [];
-  for(let cell of row.children) {
-    if(cell.classList.contains("key-on")) list.push(freq);
-    freq *= 2**(1/12);
-  }
-  return list;
-};
+const eSheet = $("#sheet");
+const eBtnPlay = $("#button-play");
+const eBtnLoad = $("#button-load");
+const editor = new SheetViewer(eSheet[0]);
+const player = new MBoxPlayer();
 
-var editMode = false;
-
-const btnEdit = $("#score-button-edit").click(() => {
-  if(btnEdit.hasClass("btn-primary")) {
-    btnEdit.removeClass("btn-primary").addClass("btn-secondary");
-    editMode = true;
-  } else {
-    btnEdit.addClass("btn-primary").removeClass("btn-secondary");
-    editMode = false;
-  }
-});
-
-$("#score-row-addRow").attr("colspan", table.header.length);
-
-$("#score-button-addRow").click(() => {
-  if(!editMode) return;
-  for(let i=0; i<5; i++) table.addRow();
-});
-
-$("#score-table").
-  on("mouseover", "tbody td", function (e) {
-    if(!editMode) return;
-    const f = e.target;
-    if(f.classList.contains("key-off")) $(f).addClass("key-candidate");
-  }).
-  on("mouseout", "tbody td", function (e) {
-    if(!editMode) return;
-    const f = e.target;
-    if(f.classList.contains("key-off")) $(f).removeClass("key-candidate");
-  }).
-  on("click", "tbody td", function (e) {
-    if(!editMode) return;
-    const f = e.target;
-    if(f.classList.contains("key-off")) {
-      $(f).addClass("key-on").removeClass("key-off");
-
-      console.log(table.get(0));
-    } else if(f.classList.contains("key-on")) {
-      $(f).addClass("key-off").removeClass("key-on");
-    }
+let isLoaded = false;
+function loadSong(file){
+  eBtnLoad.text("読込中…");
+  unloadSong();
+  return fetch(file).then(res => res.text()).then(text => {
+    console.log("Loaded: %s", file);
+    const sheet = Sheet.fromString(text);
+    editor.sheet = player.sheet = sheet;
+    isLoaded = true;
+    eBtnPlay.prop("disabled", false);
+    eBtnLoad.prop("disabled", false).text("選択");
+    stop();
   });
+}
+
+function unloadSong() {
+  eBtnPlay.prop("disabled", true);
+  isLoaded = false;
+  editor.sheet = player.sheet = null;
+}
+
+let timer;
+function play() {
+  if(!isLoaded) return;
+  eBtnPlay.text("停止");
+  player.play();
+  timer = setInterval(() => {
+    editor.scroll(player.currentTime);
+  }, sheet.div/10 * 1000);
+  isPlaying = true;
+}
+
+function stop() {
+  eBtnPlay.text("再生");
+  player.stop();
+  clearInterval(timer);
+  isPlaying = false;
+}
+
+$("#button-load").click(() => loadSong($("#song").val()));
+
+let isPlaying = false;
+$("#button-play").click(() => {
+  if(isPlaying) stop();
+  else play();
+});

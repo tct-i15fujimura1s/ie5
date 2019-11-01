@@ -1,0 +1,110 @@
+; Jesu, Joy Of Man's Desiring by Bach
+;!tempo 200
+g1  g2                             ; 1
+g3  g4
+a3  a4
+b3  b4  g2  g3
+d4  d5
+c4  c5
+c4  c5  e2  e3
+e4  e5
+d4  d5
+d4  d5  b2  b3                     ; 2
+g4  g5
+f+4 f+5
+g4  g5  e2  e3
+d4  d5
+b3  b4
+g3  g4  e1  e2
+a3  a4
+b3  b4
+c4  c5  a1  a2                     ; 3
+d4  d5
+e4  e5
+d4  d5  b1  b2
+c4  c5
+b3  b4
+a3  a4  c2  c3
+b3  b4
+g3  g4
+f+3 f+4 d2  d3                     ; 4
+g3  g4
+a3  a4
+d3  d4  f+2 f+3
+f+3 f+4
+a3  a4
+c4  c5  d2  d3
+b3  b4
+a3  a4
+b3  b4  g2  g3                     ; 5
+g3  g4
+a3  a4
+b3  b4  e2  e3
+d4  d5
+c4  c5
+c4  c5  c2  c3
+e4  e5
+d4  d5
+d4  d5  b1  b2                     ; 6
+g4  g5
+f+4 f+5
+g4  g5  e2  e3
+d4  d5
+b3  b4
+g3  g4  d2  d3
+a3  a4
+b3  b4
+a3  a4  c2  c3                     ; 7
+d4  d5
+c4  c5
+b3  b4  c+2 c+3
+a3  a4
+g3  g4
+d3  d4  d2  d3
+g3  g4
+f+3 f+4
+g3  g4  g1  g2                     ; 8
+b3  b4
+d4  d5
+g4  g5
+d4  d5
+b3  b4  g2  g3
+g3  g4  d2  d3
+b3  b4
+d4  d5  b1  b2
+g4  b4  g2  b3                      ; 9
+b2
+g3
+f+2 f+3 b3  b4  f+4
+f+2
+b3
+c3  c4  e2  e3  c5
+e3
+c3
+f+2 a2  d3  d4  f+3 d5              ; 10
+a2
+d3
+e2  g2  d3  d4  e3  d5
+d3
+g2
+d2  f+2 b2  d3  f+3 b3  d4  d5
+d3
+b2
+e2  g2  c3  c4  e3  c4  c5          ; 11
+g2
+c3
+f+2 a2  c3  c4  a3  f+3 c5
+f+2
+c3
+g2  b2  d2  b3  d3  g3  b4
+d2
+b2
+d2  f+2 a2  d3  f+3 a3              ; 12
+d3  d4
+e3  e4
+f+3 f+4
+a3  a4
+g3  g4  d2
+a3  a4  d2  d1
+c4  c5
+b3  b4  d2

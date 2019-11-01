@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Test3</title>
+  </head>
+  <body>
+    <textarea id="score" rows="30" cols="12"></textarea>
+    <input type="button" value="start" onclick="start()">
+    <script>
+
+const tones = {c: 0, d: 2, e: 4, f: 5, g: 7, a: 9, b: 11};
+const freqs = [];
+
+for(let i=0; i<12; i++) freqs[i] = 55 * 2**(i/12);
+
+
+function parse() {
+  const text = document.getElementById("score").value;
+  return text.replace(/;[^\n]+/g, "").split(/\n+/).map(line =>
+    line.match(/\d+[a-g][-+]?/gi).map(note => {
+      const match = note.match(/(\d+)([a-g])([-+]?)/);
+      const octave = +match[1];
+      const tone = tones[match[2]] + (
+        (match[3] == '+')
+          ? 1 :
+        (match[3] == '-')
+          ? -1 : 0
+      );
+      return freqs[tone] * 2**octave;
+    })
+  );
+}
+
+function start() {
+  const ctx = new AudioContext();
+  
+  const div = 0.4;
+  let time = 0;
+  
+  parse().forEach(fs => {
+    fs.forEach(freq => {
+      const gain = ctx.createGain();
+      gain.gain.linearRampToValueAtTime(1, time);
+      gain.gain.linearRampToValueAtTime(0.5, time+0.125);
+      gain.gain.linearRampToValueAtTime(0, time+1);
+      gain.connect(ctx.destination);
+      
+      const osc = ctx.createOscillator();
+      osc.type = "triangle";
+      osc.frequency.value = freq;
+      osc.detune.value = 10;
+      osc.connect(gain);
+      osc.start(time);
+      osc.stop(time+1);
+    })
+    time+=div;
+  });
+}
+    </script>
+  </body>
+</html>
