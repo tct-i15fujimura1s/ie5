@@ -8,8 +8,8 @@ export class SheetViewer {
   }
 
   set sheet(sheet) {
-    if(!sheet) return;
     this._sheet = sheet;
+    if(!sheet) return;
     this._width = this._canvas.width = 10 * sheet.keys.length; // 鍵盤の幅×鍵盤の数
 
     const colors = ["#ffe", "#555", "#ffe", "#555", "#ffe", "#ffe", "#555", "#ffe", "#555", "#ffe", "#555", "#ffe"];

@@ -2,15 +2,20 @@ import {Sheet} from "./sheet.js";
 import {SheetViewer} from "./sheet-viewer.js";
 import {MBoxPlayer} from "./mbox-player.js";
 
+const eSong = $("#song");
 const eSheet = $("#sheet");
 const eBtnPlay = $("#button-play");
-const eBtnLoad = $("#button-load");
+const eBtnEdit = $("#button-edit");
 const editor = new SheetViewer(eSheet[0]);
 const player = new MBoxPlayer();
 
+fetch("./songs.json").then(res => res.json()).then(json => {
+  for(let key in json) $("<option>").val(json[key]).text(key).appendTo(eSong);
+});
+
 let isLoaded = false;
 function loadSong(file){
-  eBtnLoad.text("読込中…");
+  if(!file) return;
   unloadSong();
   return fetch(file).then(res => res.text()).then(text => {
     console.log("Loaded: %s", file);
@@ -18,7 +23,6 @@ function loadSong(file){
     editor.sheet = player.sheet = sheet;
     isLoaded = true;
     eBtnPlay.prop("disabled", false);
-    eBtnLoad.prop("disabled", false).text("選択");
     stop();
   });
 }
@@ -47,7 +51,7 @@ function stop() {
   isPlaying = false;
 }
 
-$("#button-load").click(() => loadSong($("#song").val()));
+eSong.change(() => loadSong(eSong.val()));
 
 let isPlaying = false;
 $("#button-play").click(() => {

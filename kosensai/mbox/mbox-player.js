@@ -11,6 +11,8 @@ export class MBoxPlayer {
     const ctx = this._ctx = new AudioContext;
 
     const div = this.sheet.div;
+    const type = this.sheet.toneType;
+    const detune = this.sheet.detune;
 
     this.isPlaying = true;
 
@@ -24,9 +26,9 @@ export class MBoxPlayer {
         gain.connect(ctx.destination);
 
         const osc = ctx.createOscillator();
-        osc.type = "triangle";
+        osc.type = type;
         osc.frequency.value = tone.frequency;
-        osc.detune.value = 10;
+        osc.detune.value = detune;
         osc.connect(gain);
         osc.start(time);
         osc.stop(time+1);
@@ -43,5 +45,9 @@ export class MBoxPlayer {
 
   get currentTime() {
     return this._ctx.currentTime;
+  }
+  
+  set onended(onended) {
+    this._ctx.onended = onended;
   }
 }

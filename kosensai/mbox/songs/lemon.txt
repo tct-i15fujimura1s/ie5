@@ -1,0 +1,10 @@
+; Lemon 米津玄師
+;!tempo 348
+;!type sine
+;!detune 30
+b3
+c+4
+d+4
+
+b3
+g+3

@@ -54,7 +54,15 @@ export class Sheet {
     if(div<0 && (match = str.match(/;!tempo\s+(\d+)/im))) {
       div = 60/+match[1];
     }
-    const sheet = new Sheet(keys, div);
+    let toneType = "triangle";
+    if(match = str.match(/;!toneType\s*(\w+)/im)) {
+      toneType = match[1];
+    }
+    let detune = 0;
+    if(match = str.match(/;!detune\s*(\d+)/im)) {
+      detune = +match[1];
+    }
+    const sheet = new Sheet(keys, div, toneType, detune);
     str.replace(/\n*;[^\n]*/g, "").split(/\n/).forEach(row =>
       sheet.add(...(row.match(/[a-g][-+#♯♭]?\d*/gi) || []).map(Tone.fromString)));
     return sheet;
@@ -71,10 +79,12 @@ export class Sheet {
     return this.keysInRange(new Tone(1, 0), new Tone(6, 11));
   }
 
-  constructor(keys = Sheet.keys72(), div = 1) {
+  constructor(keys = Sheet.keys72(), div = 1, toneType = "triangle", detune = 0) {
     this.keys = keys;
     this.div = div;
     this._array = [];
+    this.toneType = toneType;
+    this.detune = 0;
   }
 
   add(...tones) {
