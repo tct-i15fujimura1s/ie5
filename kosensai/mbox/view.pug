@@ -8,18 +8,22 @@ block body
     #sheet-viewer, #bg-editor {
       background-color: #fe8
     }
-    
+
     #sheet-editor {
       background: transparent;
       z-index: 100;
     }
     
+    #bg-editor {
+      z-index: 10;
+    }
+
     #sheet-editor, #bg-editor {
       position: absolute;
       left: 0;
       top: 0;
     }
-    
+
     #editor-container {
       position: relative;
     }
@@ -34,6 +38,7 @@ block body
       .col-6
         button.btn.btn-primary#button-play(type="button" disabled) 再生
         button.btn.btn-primary#button-edit(type="button") 編集
+        button.btn.btn-primary#button-import(type="button") インポート
     .row#row-viewer
       .col-12
         canvas#sheet-viewer
@@ -43,6 +48,7 @@ block body
           .col-12
             button.btn.btn-primary#button-edit-up(type="button") ↑
             button.btn.btn-primary#button-edit-down(type="button") ↓
+            button.btn.btn-primary#button-edit-export(type="button") エクスポート
         .row
           .col-12
             #editor-container

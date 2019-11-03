@@ -9,9 +9,11 @@ const eSheetViewer = $("#sheet-viewer");
 const eSheetEditor = $("#sheet-editor");
 const eBGEditor = $("#bg-editor");
 const eBtnPlay = $("#button-play");
+const eBtnImport = $("#button-import");
 const eBtnEdit = $("#button-edit");
 const eBtnEditUp = $("#button-edit-up");
 const eBtnEditDn = $("#button-edit-down");
+const eBtnEditExport = $("#button-edit-export");
 const eRowViewer = $("#row-viewer");
 const eRowEditor = $("#row-editor");
 
@@ -33,10 +35,31 @@ eBtnPlay.click(() => togglePlaying());
 
 eBtnEdit.click(() => toggleEditing());
 
-eSheetEditor.mousemove(e => editor.hightlightAt(e.offsetX, e.offsetY)).mouseout(() => editor.highlightNone());
+eBtnImport.click(() => {
+  const eInputFile = $("<input type=file>")[0];
+  eInputFile.onchange = () => {
+    const file = eInputFile.files[0];
+    const url = URL.createObjectURL(file);
+    $("<option>").val(url).text(file.name).appendTo(eSong);
+    eSong.val(url).change();
+  };
+  eInputFile.click();
+});
 
-eBtnEditUp.click(() => { editor.currentTime += editor.div; });
-eBtnEditDn.click(() => { editor.currentTime -= editor.div; });
+eSheetEditor
+  .mousemove(e => editor.hightlightAt(e.offsetX, e.offsetY))
+  .mouseout(() => editor.highlightNone())
+  .click(e => editor.putAt(e.offsetX, e.offsetY));
+
+eBtnEditUp.click(() => { editor.currentTime -= editor.div; });
+eBtnEditDn.click(() => { editor.currentTime += editor.div; });
+
+eBtnEditExport.click(() => {
+  const blob = new Blob([editor.sheet.toString()], {type: "text/plain"});
+  const eA = $("<a download=mbox.txt>")[0];
+  eA.href = URL.createObjectURL(blob);
+  eA.click();
+});
 
 player.sheet = viewer.sheet = new Sheet();
 
@@ -111,6 +134,6 @@ function closeEditor() {
   eBtnPlay.prop("disabled", false);
   eRowEditor.hide();
   viewer.sheet = player.sheet = editor.sheet;
-  
+  viewer.scroll(0);
   eRowViewer.show();
 }

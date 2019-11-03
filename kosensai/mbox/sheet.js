@@ -80,6 +80,11 @@ export class Sheet {
   }
 
   constructor(keys = Sheet.keys72(), div = 1, toneType = "triangle", detune = 0) {
+    this.props = {
+      tempo: Math.round(600/div)*0.1,
+      toneType,
+      detune
+    };
     this.keys = keys;
     this.div = div;
     this._array = [];
@@ -95,7 +100,27 @@ export class Sheet {
     return this._array[index];
   }
 
+  set(index, array) {
+    return this._array[index] = array;
+  }
+
   forEach(consumer, context = null) {
     this._array.forEach(consumer, context);
+  }
+
+  toString(extra_comments = null) {
+    let text = "";
+    if(extra_comments) {
+      text += extra_comments.split(/\n/).map(line => `; ${line}\n`).join("");
+    }
+    for(const [name, value] of Object.entries(this.props)) {
+      text += `;!${name} ${value}\n`;
+    }
+    const length = this._array.length;
+    for(let i=0; i < length; i++) {
+      if(i in this._array) text += this._array[i].map(tone => tone.toString()).join(" ");
+      text += "\n";
+    }
+    return text;
   }
 }
