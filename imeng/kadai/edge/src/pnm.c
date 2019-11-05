@@ -120,13 +120,12 @@ const char *writePNMHeader(const PNM *pnm, FILE *fp) {
     return "negative width";
   if (pnm->height < 0)
     return "negative height";
-  fprintf(fp, "P%d %d %d", pnm->descriptor, pnm->width, pnm->height);
+  fprintf(fp, "P%d\n%d %d\n", pnm->descriptor, pnm->width, pnm->height);
   if (pnm->descriptor != 1 && pnm->descriptor != 4) {
     if (pnm->max < 0)
       return "negative max";
-    fprintf(fp, " %d", pnm->max);
+    fprintf(fp, "%d\n", pnm->max);
   }
-  fprintf(fp, "\n");
   return NULL;
 }
 
@@ -231,15 +230,19 @@ void pnmDetails(const PNM *pnm, const char *indent) {
 }
 
 int getPxPNM(PNM *pnm, int x, int y) {
-  x = x % pnm->width;
-  y = y % pnm->height;
-  return pnm->data[x + y*pnm->height];
+  x = (pnm->width + x) % pnm->width;
+  y = (pnm->height + y) % pnm->height;
+  int i = x + y*pnm->width;
+  if(i < 0 || i >= pnm->count) fprintf(stderr, "Error: index out of range: %d\n", i);
+  return pnm->data[i];
 }
 
 void setPxPNM(PNM *pnm, int x, int y, int value) {
   if(value<0) value=0;
   else if(value>pnm->max) value=pnm->max;
-  x = x % pnm->width;
-  y = y % pnm->height;
-  pnm->data[x + y*pnm->height] = value;
+  x = (pnm->width + x) % pnm->width;
+  y = (pnm->height + y) % pnm->height;
+  int i = x + y*pnm->width;
+  if(i < 0 || i >= pnm->count) fprintf(stderr, "Error: index out of range: %d\n", i);
+  pnm->data[i] = (unsigned short) value;
 }

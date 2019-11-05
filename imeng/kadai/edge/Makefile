@@ -1,31 +1,20 @@
-LIB = pnm.c
-PROGRAM = inout wavg1 wavg2 wavg3 median edge1 edge2
+LIB = src/pnm.c
+PROGRAMS = inout wavg1 wavg2 wavg3 median edge1 edge2 edge3
+IMAGES = $(foreach pgm,$(PROGRAMS),$(pgm).pgm)
 
 .PHONY: all
+all: $(PROGRAMS)
 
-all: $(PROGRAM)
+$(PROGRAMS): %: src/%.c
+	$(CC) -o $@ $< $(LIB)
 
-inout: $(LIB) inout.c
-	$(CC) -o $@ $^
+.PHONY: run
+run: $(IMAGES)
 
-wavg1: $(LIB) wavg1.c
-	$(CC) -o $@ $^
-
-wavg2: $(LIB) wavg2.c
-	$(CC) -o $@ $^
-
-wavg3: $(LIB) wavg3.c
-	$(CC) -o $@ $^
-
-median: $(LIB) median.c
-	$(CC) -o $@ $^
-
-edge1: $(LIB) edge1.c
-	$(CC) -o $@ $^
-
-edge2: $(LIB) edge2.c
-	$(CC) -o $@ $^
+$(IMAGES): %.pgm: % res/in.pnm
+	./$< res/in.pnm $@
 
 .PHONY: clean
 clean:
-	rm -rf $(PROGRAM)
+	rm -f $(PROGRAMS)
+	rm -f $(IMAGES)

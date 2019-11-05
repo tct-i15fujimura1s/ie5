@@ -35,17 +35,36 @@ int main(int argc, char** argv) {
 
   for(int y=0; y<pnm.height; y++) {
     for(int x=0; x<pnm.width; x++) {
-      int sum=0;
-      sum +=-8*getPxPNM(&pnm, x  , y  );
-      sum += 1*getPxPNM(&pnm, x  , y+1);
-      sum += 1*getPxPNM(&pnm, x+1, y  );
-      sum += 1*getPxPNM(&pnm, x  , y-1);
-      sum += 1*getPxPNM(&pnm, x-1, y  );
-      sum += 1*getPxPNM(&pnm, x+1, y+1);
-      sum += 1*getPxPNM(&pnm, x+1, y-1);
-      sum += 1*getPxPNM(&pnm, x-1, y+1);
-      sum += 1*getPxPNM(&pnm, x-1, y-1);
-      setPxPNM(&avg, x, y, sum/16);
+      int edge=0;
+      edge += -4*getPxPNM(&pnm, x  , y  );
+
+      edge += -3*getPxPNM(&pnm, x  , y+1);
+      edge += -3*getPxPNM(&pnm, x+1, y  );
+      edge += -3*getPxPNM(&pnm, x  , y-1);
+      edge += -3*getPxPNM(&pnm, x-1, y  );
+
+      edge += -2*getPxPNM(&pnm, x+1, y+1);
+      edge += -2*getPxPNM(&pnm, x+1, y-1);
+      edge += -2*getPxPNM(&pnm, x-1, y+1);
+      edge += -2*getPxPNM(&pnm, x-1, y-1);
+
+      edge +=  4*getPxPNM(&pnm, x+2, y+2);
+      edge +=  4*getPxPNM(&pnm, x+2, y-2);
+      edge +=  4*getPxPNM(&pnm, x-2, y+2);
+      edge +=  4*getPxPNM(&pnm, x-2, y-2);
+
+      edge +=  1*getPxPNM(&pnm, x+1, y+2);
+      edge +=  1*getPxPNM(&pnm, x+2, y+1);
+      edge +=  1*getPxPNM(&pnm, x+1, y-2);
+      edge +=  1*getPxPNM(&pnm, x-2, y+1);
+
+      edge +=  1*getPxPNM(&pnm, x+2, y+1);
+      edge +=  1*getPxPNM(&pnm, x+1, y+2);
+      edge +=  1*getPxPNM(&pnm, x+2, y-1);
+      edge +=  1*getPxPNM(&pnm, x-1, y+2);
+      if(edge < 0) edge = -edge;
+      if(edge > 255) edge = 255;
+      setPxPNM(&avg, x, y, edge);
     }
   }
 
