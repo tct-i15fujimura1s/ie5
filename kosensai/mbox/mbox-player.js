@@ -11,8 +11,8 @@ export class MBoxPlayer {
     const ctx = this._ctx = new AudioContext;
 
     const div = this.sheet.div;
-    const type = this.sheet.toneType;
-    const detune = this.sheet.detune;
+    const type = this.sheet.props.toneType;
+    const detune = this.sheet.props.detune;
 
     this.isPlaying = true;
 
@@ -46,7 +46,7 @@ export class MBoxPlayer {
   get currentTime() {
     return this._ctx.currentTime;
   }
-  
+
   set onended(onended) {
     this._ctx.onended = onended;
   }

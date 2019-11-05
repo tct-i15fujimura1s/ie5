@@ -61,29 +61,26 @@ eBtnEditExport.click(() => {
   eA.click();
 });
 
-player.sheet = viewer.sheet = new Sheet();
+editor.sheet = player.sheet = viewer.sheet = new Sheet();
 
 
 // functions
-let isLoaded = false;
 function loadSong(file){
-  if(!file) return;
   unloadSong();
+  if(!file) return;
   return fetch(file).then(res => res.text()).then(text => {
     console.log("Loaded: %s", file);
     const sheet = Sheet.fromString(text);
-    viewer.sheet = player.sheet = sheet;
+    editor.sheet = viewer.sheet = player.sheet = sheet;
     eBtnPlay.prop("disabled", false);
     stop();
-    isLoaded = true;
     viewer.scroll(0);
+    editor.scroll(0);
   });
 }
 
 function unloadSong() {
-  isLoaded = false;
-  eBtnPlay.prop("disabled", true);
-  viewer.sheet = player.sheet = null;
+  editor.sheet = viewer.sheet = player.sheet = new Sheet();
 }
 
 
@@ -95,7 +92,6 @@ function togglePlaying() {
 
 let timer;
 function play() {
-  if(!isLoaded) return;
   player.play();
   timer = setInterval(() => {
     viewer.scroll(player.currentTime);
@@ -124,7 +120,6 @@ function openEditor() {
   eBtnPlay.prop("disabled", true);
   stop();
   eRowViewer.hide();
-  editor.sheet = player.sheet;
   editor.scroll(0);
   eRowEditor.show();
 }
@@ -133,7 +128,6 @@ function closeEditor() {
   eBtnEdit.text("編集");
   eBtnPlay.prop("disabled", false);
   eRowEditor.hide();
-  viewer.sheet = player.sheet = editor.sheet;
   viewer.scroll(0);
   eRowViewer.show();
 }

@@ -79,7 +79,7 @@ export class Sheet {
     return this.keysInRange(new Tone(1, 0), new Tone(6, 11));
   }
 
-  constructor(keys = Sheet.keys72(), div = 1, toneType = "triangle", detune = 0) {
+  constructor(keys = Sheet.keys72(), div = 0.5, toneType = "triangle", detune = 0) {
     this.props = {
       tempo: Math.round(600/div)*0.1,
       toneType,
