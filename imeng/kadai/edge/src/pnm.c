@@ -1,3 +1,5 @@
+
+//_/_/_/_/_/_/_/_/_/_/ pnm.c /_/_/_/_/_/_/_/_/_/_/
 // Author: i15fujimura1s@tokuyama.ac.jp
 #include <stdio.h>
 #include <stdlib.h>

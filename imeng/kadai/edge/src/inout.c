@@ -1,3 +1,5 @@
+
+//_/_/_/_/_/_/_/_/_/_/ inout.c /_/_/_/_/_/_/_/_/_/_/
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>

@@ -1,5 +1,5 @@
 LIB = src/pnm.c
-PROGRAMS = inout wavg1 wavg2 wavg3 median edge1 edge2 edge3
+PROGRAMS = inout wavg1 wavg2 wavg3 median edge1 edge2 edge3 sharpen
 IMAGES = $(foreach pgm,$(PROGRAMS),$(pgm).pgm)
 
 .PHONY: all

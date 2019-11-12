@@ -1,5 +1,5 @@
 
-//_/_/_/_/_/_/_/_/_/_/ edge3.c /_/_/_/_/_/_/_/_/_/_/
+//_/_/_/_/_/_/_/_/_/_/ sharpen.c /_/_/_/_/_/_/_/_/_/_/
 #include <stdio.h>
 #include "pnm.h"
 
@@ -38,7 +38,8 @@ int main(int argc, char** argv) {
   for(int y=0; y<pnm.height; y++) {
     for(int x=0; x<pnm.width; x++) {
       int edge=0;
-      edge += -4*getPxPNM(&pnm, x  , y  );
+      int px = getPxPNM(&pnm, x, y);
+      edge += -4*px;
 
       edge += -3*getPxPNM(&pnm, x  , y+1);
       edge += -3*getPxPNM(&pnm, x+1, y  );
@@ -66,7 +67,7 @@ int main(int argc, char** argv) {
       edge +=  1*getPxPNM(&pnm, x-1, y+2);
       if(edge < 0) edge = -edge;
       if(edge > 255) edge = 255;
-      setPxPNM(&avg, x, y, edge);
+      setPxPNM(&avg, x, y, px + edge);
     }
   }
 
