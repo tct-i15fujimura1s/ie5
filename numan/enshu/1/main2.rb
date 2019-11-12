@@ -9,13 +9,13 @@ E = 15 #[V]
   puts "R2 = %4.1f [Ω]:" % r2
   matA = Matrix[[R1+r2+R0, -R0, -r2], [-R0, R3+R4+R0, -R4], [-r2, -R4, r2+R4]]
   vecB = Vector[0, 0, E]
-  lup = matA.lup
-  matL, matU = lup.l, lup.u
+  lup = matA.lup_decomposition
   vecX = lup.solve(vecB)
   i0 = vecX[0] - vecX[1]
   puts <<-EOT
-  L = #{matL}
-  U = #{matU}
+  L = #{lup.l}
+  U = #{lup.u}
+  P = #{lup.p}
   I0 = #{"%6.3f" % i0} [A]
   EOT
 }
