@@ -1,0 +1,61 @@
+問題1
+  設問1-1 (a)
+    A SYN-SENT
+    B ESTABLISHED
+    あ LISTEN
+    い SYN-RECEIVED
+    う ESTABLISHED
+  設問1-1 (b)
+    (1) SYN
+    (2) SYN, ACK
+    (3) ACK
+  設問1-1 (c)
+    1bit
+    3ウェイハンドシェイク
+  設問1-1 (d)
+    アクティブオープン TCP A
+    クライアント TCP A
+  設問1-2
+    a 3
+    b 1
+    c 2
+    ア 3
+    イ 1
+    ウ 1
+    エ 3
+問題2
+  設問2-1
+    あ 192.168.1.1/25 ~ 192.168.1.126/25
+    い 192.168.1.127/25
+    う 25台
+    え 192.168.1.128/25
+  設問2-2
+| network | gateway |
+| 3.0/25  | 3.126   |
+| 0.0/0   | 3.126   |
+  設問2-3
+| network  | gateway |
+| 0.0  /24 | 1.129   |
+| 1.0  /25 | 1.129   |
+| 1.128/25 | direct  |
+| 2.0  /24 | direct  |
+| 3.0  /25 | 3.130   |
+| 3.128/25 | direct  |
+  設問2-4
+    ルータ1
+| network  | gateway |
+| 0.0  /24 | direct  |
+| 1.0  /25 | direct  |
+| 1.128/25 | direct  |
+| 2.0  /23 | 1.130   |
+    ルータ3
+| network  | gateway |
+| 3.0  /25 | direct  |
+| 3.128/25 | direct  |
+| 0.0  /22 | 3.129   |
+    ルータ1 (別解答)
+| network  | gateway |
+| 0.0  /24 | direct  |
+| 1.0  /25 | direct  |
+| 1.128/25 | direct  |
+|          |         |
